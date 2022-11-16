@@ -1,35 +1,40 @@
 name = input('What is your name?\n')
 print('\n\nHi, %s.' % name + '\n\n' + 'this is a rock paper scissor game where a human player can compete against a computer. please follow instructions.\n')
 
-# while human not chose 'no' as variable gameSwitch, keep on going
-gameSwitch = ''
-humanChoiceValidation = 1
+gameSwitch = '' # at the end of each round human makes a decision if want's to play more or not
+humanChoiceValidation = False # is human's choice valid?
 humanPoints = 0
 computerPoints = 0
+godmode = False # does human want's to cheat?
+
 while gameSwitch != 'no':
   
   # let human choose first 
-  while humanChoiceValidation == 1:
+  while humanChoiceValidation == False:
     humanChoice = input('\ntype R for Rock, P for Papper, S for Scissors. press return\n')
+    # convert human's choice to decimal, set some switches, and write it on the screen
     if humanChoice == 'R' or humanChoice == 'r': 
       print('\nhuman chose Rock')
       humanChoice = 1
-      humanChoiceValidation = 0
+      humanChoiceValidation = True
     elif humanChoice == 'P' or humanChoice == 'p': 
       print('\nhuman chose Papper')
       humanChoice = 2
-      humanChoiceValidation = 0
+      humanChoiceValidation = True
     elif humanChoice == 'S' or humanChoice == 's':
       print('\nhuman chose Scissors')
       humanChoice = 3
-      humanChoiceValidation = 0
+      humanChoiceValidation = True
+    elif humanChoice == 'iddqd':
+      godmode = 1
+      humanChoiceValidation = False
     else: 
-      humanChoiceValidation = 1
-    #print("\npress R for Rock, P for Papper, S for Scissors\n")
+      humanChoiceValidation = False
 
   # let computer choose now
-  from random import randrange
-  computerChoice = randrange(3) + 1
+  from random import randrange # load random module
+  computerChoice = randrange(3) + 1 # generate computer's choice
+  # write computer's choice on screen in human readable form
   if computerChoice == 1:
     print('computer chose Rock\n')
   elif computerChoice == 2:
@@ -39,12 +44,15 @@ while gameSwitch != 'no':
   else:
     print('error\n')
 
-  #print(type(humanChoice))
-  #print(type(computerChoice))
-  #print(humanChoice, ' ', computerChoice)
+  #print(type(humanChoice)) # debug
+  #print(type(computerChoice)) # debug
+  #print(humanChoice, ' ', computerChoice) # debug
 
   # calculate winner, announce winner, increment points
-  if humanChoice - computerChoice == 1 or humanChoice - computerChoice == -2:
+  if godmode == True:
+    print('human wins this round\n')
+    humanPoints += 1
+  elif humanChoice - computerChoice == 1 or humanChoice - computerChoice == -2:
     print('human wins this round\n')
     humanPoints += 1
   elif humanChoice - computerChoice == -1 or humanChoice - computerChoice == 2:
@@ -57,7 +65,8 @@ while gameSwitch != 'no':
     
   # ask if human want's to play more
   gameSwitch = input('does human want\'s to play more?\nyes/no\n')
-  humanChoiceValidation = 1
+  
+  humanChoiceValidation = False
 
 print ('\nhuman : computer\n', humanPoints, ' : ', computerPoints)
 if humanPoints > computerPoints:
