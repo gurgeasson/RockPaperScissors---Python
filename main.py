@@ -14,15 +14,15 @@ while gameSwitch != 'no':
     humanChoice = input('\ntype R for Rock, P for Papper, S for Scissors. press return\n')
     # convert human's choice to integer, validate choice, write choice on screen
     if humanChoice == 'R' or humanChoice == 'r': 
-      print('\nhuman chose Rock')
+      print('\n=============\nhuman chose Rock')
       humanChoice = 1
       humanChoiceValidation = True
     elif humanChoice == 'P' or humanChoice == 'p': 
-      print('\nhuman chose Papper')
+      print('\n=============\nhuman chose Papper')
       humanChoice = 2
       humanChoiceValidation = True
     elif humanChoice == 'S' or humanChoice == 's':
-      print('\nhuman chose Scissors')
+      print('\n=============\nhuman chose Scissors')
       humanChoice = 3
       humanChoiceValidation = True
     elif humanChoice == 'iddqd':
@@ -68,8 +68,11 @@ while gameSwitch != 'no':
   
   humanChoiceValidation = False
 
+# announce winner
 print ('\nhuman : computer\n', humanPoints, ' : ', computerPoints)
 if humanPoints > computerPoints:
   print('human win this game')
-else:
+elif computerPoints > humanPoints:
   print('computer win this game')
+else:
+  print('draw')
