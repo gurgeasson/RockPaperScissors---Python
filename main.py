@@ -12,7 +12,7 @@ while gameSwitch != 'no':
   # let human choose first 
   while humanChoiceValidation == False:
     humanChoice = input('\ntype R for Rock, P for Papper, S for Scissors. press return\n')
-    # convert human's choice to decimal, set some switches, and write it on the screen
+    # convert human's choice to integer, validate choice, write choice on screen
     if humanChoice == 'R' or humanChoice == 'r': 
       print('\nhuman chose Rock')
       humanChoice = 1
